@@ -1,19 +1,22 @@
 import React from 'react';
+import './ReviewTable.css'
 
 interface Review {
   text: string;
   date: string;
   votes: number;
+  reviewId: string;
 }
 
 interface ReviewTableProps {
   reviews: Array<Review>;
-  onUpvote: (reviewId: number) => void;
-  onDownvote: (reviewId: number) => void;
+  onUpvote: (reviewId: string) => void; 
+  onDownvote: (reviewId: string) => void; 
 }
 
-
-export const ReviewTable: React.FC<ReviewTableProps> = ({ reviews, onUpvote, onDownvote  }) => {
+export const ReviewTable: React.FC<ReviewTableProps> = ({ reviews, onUpvote, onDownvote }) => {
+   // Sort reviews by votes in descending order
+  const sortedReviews = [...reviews].sort((a, b) => b.votes - a.votes);
   return (
     <div>
       <h2 className="text-xl font-semibold mb-2">Review Table</h2>
@@ -26,15 +29,14 @@ export const ReviewTable: React.FC<ReviewTableProps> = ({ reviews, onUpvote, onD
           </tr>
         </thead>
         <tbody>
-          {reviews.map((review, index) => (
-            <tr key={index} className="border">
+          {sortedReviews.map((review) => (
+            <tr key={review.reviewId} className="border">
               <td className="py-2 px-4 border">{review.text}</td>
               <td className="py-2 px-4 border">{review.date}</td>
               <td className="py-2 px-4 border">
                 {review.votes}
-                <button onClick={onUpvote}>up</button>
-                <button onClick={onDownvote}>down</button>
-                {/* Add upvote and downvote buttons here */}
+                <button onClick={() => onUpvote(review.reviewId)} className='pl-5'>&#x25B2;</button>
+                <button onClick={() => onDownvote(review.reviewId)}>&#x25BC;</button>
               </td>
             </tr>
           ))}
@@ -43,5 +45,3 @@ export const ReviewTable: React.FC<ReviewTableProps> = ({ reviews, onUpvote, onD
     </div>
   );
 };
-
-

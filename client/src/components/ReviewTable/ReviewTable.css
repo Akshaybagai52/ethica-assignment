@@ -1,0 +1,22 @@
+@media (max-width: 640px) {
+    table {
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 8px;
+    }
+
+    .flex {
+      flex-direction: column;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .mr-2 {
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+  }

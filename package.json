@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "install-client": "cd client && npm install",
     "install-server": "cd server && npm install",
+    "start-client": "cd client && npm run dev",
+    "start-server": "cd server && npm start",
     "install-all": "npm run install-client && npm run install-server"
   },
   "keywords": [],

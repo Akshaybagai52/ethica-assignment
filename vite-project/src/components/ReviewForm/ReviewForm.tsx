@@ -9,10 +9,16 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit }) => {
   const [isPopupVisible, setPopupVisible] = useState<boolean>(false);
 
   const handleSubmit = () => {
-    onSubmit(reviewText);
+    const newReview = {
+      text: reviewText,
+      date: new Date().toLocaleString(), // Capture the current date and time
+      votes: 0, // Initialize votes to 0
+    };
+    onSubmit(newReview);
     setReviewText('');
     setPopupVisible(false);
   };
+  // console.log(newReview)
 
   return (
     <div className="mb-4">
@@ -52,6 +58,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit }) => {
           </div>
         </div>
       )}
+      
     </div>
   );
 };

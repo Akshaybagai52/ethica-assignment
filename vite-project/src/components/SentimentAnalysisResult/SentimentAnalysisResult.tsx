@@ -1,4 +1,3 @@
-// src/components/SentimentAnalysisResult/SentimentAnalysisResult.tsx
 import React from 'react';
 
 interface SentimentAnalysisResultProps {

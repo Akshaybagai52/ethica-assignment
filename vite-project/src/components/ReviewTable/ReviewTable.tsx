@@ -8,9 +8,12 @@ interface Review {
 
 interface ReviewTableProps {
   reviews: Array<Review>;
+  onUpvote: (reviewId: number) => void;
+  onDownvote: (reviewId: number) => void;
 }
 
-export const ReviewTable: React.FC<ReviewTableProps> = ({ reviews }) => {
+
+export const ReviewTable: React.FC<ReviewTableProps> = ({ reviews, onUpvote, onDownvote  }) => {
   return (
     <div>
       <h2 className="text-xl font-semibold mb-2">Review Table</h2>
@@ -29,6 +32,8 @@ export const ReviewTable: React.FC<ReviewTableProps> = ({ reviews }) => {
               <td className="py-2 px-4 border">{review.date}</td>
               <td className="py-2 px-4 border">
                 {review.votes}
+                <button onClick={onUpvote}>up</button>
+                <button onClick={onDownvote}>down</button>
                 {/* Add upvote and downvote buttons here */}
               </td>
             </tr>
